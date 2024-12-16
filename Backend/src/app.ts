@@ -4,7 +4,7 @@ import expressRateLimit from "express-rate-limit";
 import appConfig from "./2-utils/app-config";
 import catchAll from "./4-middleware/catch-all";
 import routeNotFound from "./4-middleware/route-not-found";
-import dataController from "./6-controllers/clocks-controller";
+import clocksController from "./6-controllers/clocks-controller";
 
 // create server:
 const server = express();
@@ -14,10 +14,10 @@ server.use(express.json());
 
 // security DoS Attack: limits number of request from the same IP:
 server.use(
-  expressRateLimit({
-    windowMs: 1000, //time limit
-    max: 20, //max requests allowed in that time window
-  })
+    expressRateLimit({
+        windowMs: 1000, //time limit
+        max: 20, //max requests allowed in that time window
+    })
 );
 
 // enable cors:
@@ -27,7 +27,7 @@ server.use(cors()); //enable cors for a specific frontend.
 // server.use(sanitize);
 
 // route requests to our controllers:
-server.use("/api", dataController);
+server.use("/data", clocksController);
 
 // Route Not Found:
 server.use(routeNotFound);
@@ -36,6 +36,7 @@ server.use(routeNotFound);
 server.use(catchAll);
 
 // Run server:
-server.listen(appConfig.port, () =>
+server.listen(appConfig.port, () => {
     console.log("Listening on http://localhost:" + appConfig.port)
+}
 );

@@ -8,6 +8,7 @@ const router = express.Router();
 router.get("/clocks", async (request: Request, response: Response, next: NextFunction) => {
     try {
         const clocks = await clocksService.getAllClocks();
+        console.log("clocks controller---> ", clocks[1]);
         response.json(clocks);
     }
     catch(err: any) {
