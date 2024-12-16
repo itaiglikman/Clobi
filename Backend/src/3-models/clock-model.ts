@@ -7,12 +7,14 @@ class ClockModel {
   public userId: number;
   public status: ClockStatus;
   public date: string;
+  public time:string;
 
   constructor(clock: ClockModel) {//copy constructor
     this.id = clock.id;
     this.userId = clock.userId;
     this.status = clock.status;
     this.date = clock.date;
+    this.time = clock.time;
   }
 
   // create validation schema:
@@ -20,7 +22,8 @@ class ClockModel {
     id: Joi.number().required().integer().positive(),
     userId: Joi.number().required().integer().positive(),
     status: Joi.string().required().valid(ClockStatus.In, ClockStatus.Out),
-    date: Joi.date().iso().required(),
+    date: Joi.date().iso().required(), // YYYY-MM-DD format
+    time: Joi.string().required().pattern(/^([01]\d|2[0-3]):([0-5]\d):([0-5]\d)$/) // HH:mm:ss format
   });
 
   // validate properties and throw if not valid:

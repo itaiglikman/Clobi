@@ -34,7 +34,7 @@ export function getLastId(): LastIds {
  * @param idType: string
  * @returns newId: number
  */
-export async function getNewIdByIdType(idType: IdType): Promise<number> {
+export async function generateUniqueIdByType(idType: IdType): Promise<number> {
     try {
         // get the last ids:
         const lastIds: LastIds = getLastId();

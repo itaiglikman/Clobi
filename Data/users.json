@@ -1,29 +1,26 @@
 [
-    {
-      "id": 1,
-      "username": "admin",
-      "firstName": "Admin",
-      "lastName": "User",
-      "email": "admin@example.com",
-      "password": "admin123",
-      "roleId": 1
-    },
-    {
-      "id": 2,
-      "username": "user1",
-      "firstName": "John",
-      "lastName": "Doe",
-      "email": "john.doe@example.com",
-      "password": "password1",
-      "roleId": 2
-    },
-    {
-      "id": 3,
-      "username": "user2",
-      "firstName": "Jane",
-      "lastName": "Doe",
-      "email": "jane.doe@example.com",
-      "password": "password2",
-      "roleId": 2
-    }
-  ]
+  {
+    "id": 1,
+    "firstName": "Admin",
+    "lastName": "User",
+    "email": "admin@example.com",
+    "password": "951aca113a2e6ca93b8fb8f666f6665ef3879b74c0af66ee1a084d5103d0bec40fafdcdfefbe89becf3bb4f3566af715b97dec4320a161997e049be60887c22b",
+    "roleId": 1
+  },
+  {
+    "id": 2,
+    "firstName": "John",
+    "lastName": "Doe",
+    "email": "john.doe@example.com",
+    "password": "951aca113a2e6ca93b8fb8f666f6665ef3879b74c0af66ee1a084d5103d0bec40fafdcdfefbe89becf3bb4f3566af715b97dec4320a161997e049be60887c22b",
+    "roleId": 2
+  },
+  {
+    "id": 3,
+    "firstName": "Jane",
+    "lastName": "Doe",
+    "email": "jane.doe@example.com",
+    "password": "951aca113a2e6ca93b8fb8f666f6665ef3879b74c0af66ee1a084d5103d0bec40fafdcdfefbe89becf3bb4f3566af715b97dec4320a161997e049be60887c22b",
+    "roleId": 2
+  }
+]
