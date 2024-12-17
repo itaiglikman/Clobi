@@ -1,0 +1,31 @@
+
+Prompt for Employee Attendance Project
+Project Description: The project is an employee attendance system based on technologies like TypeScript, React, Node.js, and Express. The data is stored in a local JSON file. The system includes the following functionalities:
+
+User authentication with username and password.
+Management of employee clock-in and clock-out times.
+Admin management with the ability to view and update user attendance records.
+Using an external API to display the current time in Germany (https://worldtimeapi.org/).
+Technologies Used:
+
+Backend: Node.js, Express, TypeScript, fs-extra
+Frontend: React, TypeScript
+Validation: Joi
+Project Structure:
+
+Models:
+UserModel: Represents users in the system.
+ClockModel: Represents attendance records (clock-in and clock-out).
+RoleModel: Represents roles in the system (regular user and admin).
+AuthModel: Represents authentication data.
+Data Files:
+users.json: Contains user data.
+clocks.json: Contains attendance records.
+roles.json: Contains role data.
+Services:
+clocks-service.ts: Service for managing attendance records.
+users-service.ts: Service for managing users.
+Controllers:
+clock-controller.ts: Controller for handling requests related to attendance records.
+user-controller.ts: Controller for handling requests related to users.
+auth-controller.ts: Controller for handling authentication requests.
