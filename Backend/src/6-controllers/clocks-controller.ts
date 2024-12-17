@@ -13,7 +13,7 @@ const router = express.Router();
 // GET http://localhost:4000/data/clocks
 router.get(
   "/clocks",
-  verifyAdmin,
+  // verifyAdmin,
   async (request: Request, response: Response, next: NextFunction) => {
     try {
       // get all clocks from file:
@@ -62,6 +62,29 @@ router.post(
       const newClock = await clocksService.addClock(clock);
 
       response.status(StatusCode.Created).json(newClock);
+    } catch (err: any) {
+      next(err);
+    }
+  }
+);
+
+// patch clockOut:
+// authentication needed: regular user
+// PATCH http://localhost:4000/data/clocks/:clockId
+router.patch(
+  "/clocks/:clockId",
+  verifyToken,
+  async (request: Request, response: Response, next: NextFunction) => {
+    try {
+      // get id from url:
+      const id = +request.params.clockId;
+
+      // get clockOut from request:
+      const clockOut = request.body.clockOut;
+
+      const updatedClock = await clocksService.patchClockOut(id, clockOut);
+
+      response.json(updatedClock);
     } catch (err: any) {
       next(err);
     }

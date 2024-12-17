@@ -1,0 +1,86 @@
+[
+  {
+    "id": 1,
+    "userId": 2,
+    "status": "clock-in",
+    "date": "2023-10-01",
+    "time": "08:00:00"
+  },
+  {
+    "id": 2,
+    "userId": 2,
+    "status": "clock-out",
+    "date": "2023-10-01",
+    "time": "16:00:00"
+  },
+  {
+    "id": 3,
+    "userId": 2,
+    "status": "clock-in",
+    "date": "2023-10-02",
+    "time": "08:00:00"
+  },
+  {
+    "id": 4,
+    "userId": 2,
+    "status": "clock-out",
+    "date": "2023-10-02",
+    "time": "16:00:00"
+  },
+  {
+    "id": 5,
+    "userId": 2,
+    "status": "clock-in",
+    "date": "2023-10-03",
+    "time": "08:00:00"
+  },
+  {
+    "id": 6,
+    "userId": 2,
+    "status": "clock-out",
+    "date": "2023-10-03",
+    "time": "16:00:00"
+  },
+  {
+    "id": 7,
+    "userId": 3,
+    "status": "clock-in",
+    "date": "2023-10-01",
+    "time": "09:00:00"
+  },
+  {
+    "id": 8,
+    "userId": 3,
+    "status": "clock-out",
+    "date": "2023-10-01",
+    "time": "17:00:00"
+  },
+  {
+    "id": 9,
+    "userId": 3,
+    "status": "clock-in",
+    "date": "2023-10-02",
+    "time": "09:00:00"
+  },
+  {
+    "id": 10,
+    "userId": 3,
+    "status": "clock-out",
+    "date": "2023-10-02",
+    "time": "17:00:00"
+  },
+  {
+    "id": 35,
+    "userId": 2,
+    "status": "clock-in",
+    "date": "2024-10-01",
+    "time": "08:00:00"
+  },
+  {
+    "id": 40,
+    "userId": 2,
+    "status": "clock-in",
+    "date": "2024-10-01",
+    "time": "08:00:00"
+  }
+]
