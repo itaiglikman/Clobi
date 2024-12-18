@@ -80,5 +80,33 @@
     "clockIn": "2023-12-02T05:00:00Z",
     "clockOut": "2023-12-02T06:00:00Z",
     "totalHours": 1
+  },
+  {
+    "id": 37,
+    "userId": 3,
+    "clockIn": "2024-11-02T07:00:00Z",
+    "clockOut": "2024-11-02T11:00:00Z",
+    "totalHours": 4
+  },
+  {
+    "id": 39,
+    "userId": 3,
+    "clockIn": "2024-11-02T09:00:00Z",
+    "clockOut": "2024-11-02T10:00:00Z",
+    "totalHours": 1
+  },
+  {
+    "id": 40,
+    "userId": 3,
+    "clockIn": "2024-11-02T10:00:00Z",
+    "clockOut": "2024-11-02T11:00:00Z",
+    "totalHours": 1
+  },
+  {
+    "id": 42,
+    "userId": 3,
+    "clockIn": "2024-11-02T11:00:00Z",
+    "clockOut": "2024-11-02T12:00:00Z",
+    "totalHours": 1
   }
 ]

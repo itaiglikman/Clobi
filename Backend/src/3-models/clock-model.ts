@@ -28,7 +28,7 @@ class ClockModel {
     // status: Joi.string().required().valid(ClockStatus.In, ClockStatus.Out),
     clockIn: Joi.date().required(),
     clockOut: Joi.date().min(Joi.ref("clockIn")).required(),
-    totalHours: Joi.number().positive(),
+    totalHours: Joi.number().positive().min(0).max(24),
     // date: Joi.date().iso().required(), // YYYY-MM-DD format
     // time: Joi.string().required().pattern(/^([01]\d|2[0-3]):([0-5]\d):([0-5]\d)$/) // HH:mm:ss format
   });

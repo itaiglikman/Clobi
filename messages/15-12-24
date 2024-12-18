@@ -5,3 +5,5 @@ backend:
     [] - fix - patch clockOut - all the time overlaps
     [] - check - update
     [] - fix error message when clockOut is earlier clockIn
+    [] - logs
+    [] - german language option?
