@@ -1,43 +1,56 @@
 import Joi from "joi";
 import { ValidationError } from "./client-errors";
+
 class ClockModel {
-  public id: number;
-  public userId: number;
-  public clockIn: string;
-  public clockOut: string;
-  public totalHours: number;
-  // public date: string;
-  // public time:string;
+    public id: number;
+    public userId: number;
+    public clockIn: string;
+    public clockOut: string;
+    public totalHours: number;
 
-  constructor(clock: ClockModel) {
-    //copy constructor
-    this.id = clock.id;
-    this.userId = clock.userId;
-    this.clockIn = clock.clockIn;
-    this.clockOut = clock.clockOut;
-    this.totalHours = clock.totalHours;
-    // this.status = clock.status;
-    // this.date = clock.date;
-    // this.time = clock.time;
-  }
+    constructor(clock: ClockModel) {
+        //copy constructor
+        this.id = clock.id;
+        this.userId = clock.userId;
+        this.clockIn = clock.clockIn;
+        this.clockOut = clock.clockOut;
+        this.totalHours = this.calculateTotalHours(this.clockIn, this.clockOut);
+    }
 
-  // create validation schema:
-  public static validationSchema = Joi.object({
-    id: Joi.number().required().integer().positive(),
-    userId: Joi.number().required().integer().positive(),
-    // status: Joi.string().required().valid(ClockStatus.In, ClockStatus.Out),
-    clockIn: Joi.date().required(),
-    clockOut: Joi.date().min(Joi.ref("clockIn")).required(),
-    totalHours: Joi.number().positive().min(0).max(24),
-    // date: Joi.date().iso().required(), // YYYY-MM-DD format
-    // time: Joi.string().required().pattern(/^([01]\d|2[0-3]):([0-5]\d):([0-5]\d)$/) // HH:mm:ss format
-  });
+    /**
+    * Calculate and validate total hours
+    * @param clock
+    * @returns total hours
+    */
+    private calculateTotalHours(clockIn: string, clockOut: string): number {
+        const timeIn = new Date(clockIn).getTime();
+        const timeOut = new Date(clockOut).getTime();
 
-  // validate properties and throw if not valid:
-  public validate(): void {
-    const result = ClockModel.validationSchema.validate(this);
-    if (result.error?.message) throw new ValidationError(result.error.message);
-  }
+        const diff = timeOut - timeIn;
+        const hours = diff / (1000 * 60 * 60);
+        parseFloat(hours.toFixed(2));
+
+        // validate total hours:
+        if (hours < 0) throw new ValidationError("ClockOut is before ClockIn");
+        if (hours > 24) throw new ValidationError("ClockOut is after 24 hours or more, get some rest...");
+
+        return hours;
+    }
+
+    // create validation schema:
+    public static validationSchema = Joi.object({
+        id: Joi.number().required().integer().positive(),
+        userId: Joi.number().required().integer().positive(),
+        clockIn: Joi.date().required(),
+        clockOut: Joi.date().min(Joi.ref("clockIn")).required(),
+        totalHours: Joi.number().min(0).max(24),
+    });
+
+    // validate properties and throw if not valid:
+    public validate(): void {
+        const result = ClockModel.validationSchema.validate(this);
+        if (result.error?.message) throw new ValidationError(result.error.message);
+    }
 }
 
 export default ClockModel;

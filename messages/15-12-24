@@ -1,9 +1,13 @@
 backend:
     [] - server.listen - should have try-catch/then-catch?
-    [] - move both clock-in and clock-out to the same obj
-    [] - validate total hours without clockOut is 0 (patch/add/update)
-    [] - fix - patch clockOut - all the time overlaps
-    [] - check - update
-    [] - fix error message when clockOut is earlier clockIn
+    [X] - move both clock-in and clock-out to the same obj
+    [X] - validate total hours without clockOut is 0 (patch/add/update)
+    [X] - fix - patch clockOut - all the time overlaps
+    [X] - check - update
+    [X] - fix error message when clockOut is earlier clockIn
     [] - logs
     [] - german language option?
+    [] - clock file by userId????
+            probably a much more efficient way to store the data and call data.
+            most actions are done for a specific user.
+            therefore it would be much more efficient to store the data in a file for each user. 
