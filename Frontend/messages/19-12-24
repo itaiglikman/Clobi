@@ -1,0 +1,16 @@
+[] - logo
+[] - appConfig
+  [] - create urls
+  [] - connect to backend
+[] - auth
+    [] - redux - create auth state
+    [] - interceptor
+    [] - login 
+    [] - logout 
+[] - 
+[] - 
+[] - 
+[] - 
+[] - 
+[] - 
+[] - 

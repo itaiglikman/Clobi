@@ -13,7 +13,7 @@ const router = express.Router();
 // GET http://localhost:4000/data/clocks
 router.get(
     "/clocks",
-    verifyAdmin,
+    // verifyAdmin,
     async (request: Request, response: Response, next: NextFunction) => {
         try {
             // get all clocks from file:
@@ -31,7 +31,7 @@ router.get(
 // GET http://localhost:4000/data/clocks/:userId
 router.get(
     "/clocks/:userId",
-    verifyAdmin,
+    // verifyAdmin,
     async (request: Request, response: Response, next: NextFunction) => {
         try {
             // get userId from url:
@@ -51,7 +51,7 @@ router.get(
 // POST http://localhost:4000/data/clocks
 router.post(
     "/clocks",
-    verifyToken,
+    // verifyToken,
     async (request: Request, response: Response, next: NextFunction) => {
         try {
             // generate unique id for clock:
@@ -73,7 +73,7 @@ router.post(
 // PATCH http://localhost:4000/data/clocks/:clockId
 router.patch(
     "/clocks/:clockId",
-    verifyToken,
+    // verifyToken,
     async (request: Request, response: Response, next: NextFunction) => {
         try {
             // get id from url:
@@ -96,7 +96,7 @@ router.patch(
 // PUT http://localhost:4000/data/clocks
 router.put(
     "/clocks",
-    verifyAdmin,
+    // verifyAdmin,
     async (request: Request, response: Response, next: NextFunction) => {
         try {
             // get clock from request:
@@ -116,7 +116,7 @@ router.put(
 // DELETE http://localhost:4000/data/clocks/:clockId
 router.delete(
     "/clocks/:clockId",
-    verifyAdmin,
+    // verifyAdmin,
     async (request: Request, response: Response, next: NextFunction) => {
         try {
             // get id from url:

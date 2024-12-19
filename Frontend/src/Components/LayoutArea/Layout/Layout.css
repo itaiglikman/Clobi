@@ -1,3 +1,19 @@
 .Layout {
-	
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-rows: 15% 80% 5%;
 }
+
+.Layout>* {
+    border: 1px solid;
+}
+
+.Layout .routing {
+    overflow: auto;
+}
+
+
+

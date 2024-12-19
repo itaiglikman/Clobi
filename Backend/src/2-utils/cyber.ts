@@ -5,7 +5,7 @@ import jwt from "jsonwebtoken";
 import crypto from "crypto";
 
 // token secret key:
-const secretKey = "The-Key-To-The-Secret-Clobby";
+const secretKey = "The-Key-To-The-Secret-Clobi";
 
 function getNewToken(user: UserModel): string {
 
