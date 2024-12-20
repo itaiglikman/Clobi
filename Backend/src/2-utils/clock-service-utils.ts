@@ -5,7 +5,7 @@ import appConfig from "./app-config";
 import UserModel from "../3-models/user-model";
 
 // define the paths to the data files:
-export const clocksPath = appConfig.dataFiles.clocks;
+export const clocksPath = (userId: number) => appConfig.dataFiles.clocks(userId);
 export const usersPath = appConfig.dataFiles.users;
 
 // describe the action options:
@@ -22,18 +22,15 @@ export enum ActionOptions {
  * all functions request already allClocks,
  * so to spare call to the database,
  * use allClocks and filter for allClocksByUser
- * @param allClocks
+ * @param clocks
  * @param action: post, patch, put - skip the clock that is being updated
  * @returns boolean
  */
 export function checkOverlap(
     clock: ClockModel,
-    allClocks: ClockModel[],
+    clocks: ClockModel[],
     action: ActionOptions,
 ): boolean {
-
-    // initiate allClocksByUser:
-    let allClocksByUser = [];
 
     // in case of update and patch -
     // the clock is already in allClocks,
@@ -41,18 +38,13 @@ export function checkOverlap(
     // skip the clock that is being updated:
     if (action === ActionOptions.patch || action === ActionOptions.put) {
         // get all clocks by user:
-        allClocksByUser = allClocks.filter((c: ClockModel) => {
+        clocks.filter((c: ClockModel) => {
             if (c.id === clock.id) return false;
-            return c.userId === clock.userId
+            // return c.userId === clock.userId
         });
-    } else {
-        // get all clocks by user:
-        allClocksByUser = allClocks.filter((c: ClockModel) =>
-            c.userId === clock.userId);
     }
 
-    // check if clock overlaps with existing clocks:
-    for (const c of allClocksByUser) {
+    for (const c of clocks) {
         if (
             //check if clockIn is between clockIn and clockOut
             new Date(clock.clockIn).getTime() >= new Date(c.clockIn).getTime() &&

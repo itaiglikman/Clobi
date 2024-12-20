@@ -1,13 +1,14 @@
 [] - logo
 [] - appConfig
   [] - create urls
-  [] - connect to backend
+  [X] - connect to backend
 [] - auth
     [] - redux - create auth state
     [] - interceptor
     [] - login 
     [] - logout 
-[] - 
+[] - models
+    [] - validation- use joi same as backend
 [] - 
 [] - 
 [] - 

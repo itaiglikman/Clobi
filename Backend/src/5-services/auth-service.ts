@@ -6,6 +6,7 @@ import { UnauthorizedError, ValidationError } from "../3-models/client-errors";
 import CredentialsModel from "../3-models/credentials-model";
 import RoleModel from "../3-models/role-model";
 import UserModel from "../3-models/user-model";
+import { clocksPath } from "../2-utils/clock-service-utils";
 
 const usersPath = appConfig.dataFiles.users;
 
@@ -40,6 +41,7 @@ async function register(user: UserModel): Promise<string> {
   // write user to users.json:
   users.push(user);
   await fs.writeJson(usersPath, users, { spaces: 2 });
+  await fs.writeJson(clocksPath(user.id), [], { spaces: 2 });
 
   // get new token:
   const token = cyber.getNewToken(user);

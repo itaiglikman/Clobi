@@ -1,4 +1,4 @@
-import Joi from "joi";
+import Joi, { number } from "joi";
 import { ValidationError } from "./client-errors";
 
 class ClockModel {
@@ -23,6 +23,8 @@ class ClockModel {
     * @returns total hours
     */
     private calculateTotalHours(clockIn: string, clockOut: string): number {
+        if(!clockOut) return 0;
+
         const timeIn = new Date(clockIn).getTime();
         const timeOut = new Date(clockOut).getTime();
 
@@ -42,7 +44,7 @@ class ClockModel {
         id: Joi.number().required().integer().positive(),
         userId: Joi.number().required().integer().positive(),
         clockIn: Joi.date().required(),
-        clockOut: Joi.date().min(Joi.ref("clockIn")).required(),
+        clockOut: Joi.date().min(Joi.ref("clockIn")),
         totalHours: Joi.number().min(0).max(24),
     });
 

@@ -8,24 +8,6 @@ import verifyToken from "../4-middleware/verify-token";
 
 const router = express.Router();
 
-// get all clocks:
-// authentication needed: admin
-// GET http://localhost:4000/data/clocks
-router.get(
-    "/clocks",
-    // verifyAdmin,
-    async (request: Request, response: Response, next: NextFunction) => {
-        try {
-            // get all clocks from file:
-            const clocks = await clocksService.getAllClocks();
-
-            response.json(clocks);
-        } catch (err: any) {
-            next(err);
-        }
-    }
-);
-
 // get all clocks by userId:
 // authentication needed: admin
 // GET http://localhost:4000/data/clocks/:userId
@@ -70,19 +52,19 @@ router.post(
 
 // patch clockOut:
 // authentication needed: regular user
-// PATCH http://localhost:4000/data/clocks/:clockId
+// PATCH http://localhost:4000/data/clocks/:userId/:clockId
 router.patch(
-    "/clocks/:clockId",
+    "/clocks/:userId/:clockId",
     // verifyToken,
     async (request: Request, response: Response, next: NextFunction) => {
         try {
             // get id from url:
-            const id = +request.params.clockId;
+            const { userId, clockId } = request.params;
 
             // get clockOut from request:
             const clockOut = request.body.clockOut;
 
-            const updatedClock = await clocksService.patchClockOut(id, clockOut);
+            const updatedClock = await clocksService.patchClockOut(+userId, +clockId, clockOut);
 
             response.json(updatedClock);
         } catch (err: any) {
@@ -113,16 +95,16 @@ router.put(
 
 // delete clock by clockId:
 // authentication needed: admin
-// DELETE http://localhost:4000/data/clocks/:clockId
+// DELETE http://localhost:4000/data/clocks/:userId/:clockId
 router.delete(
-    "/clocks/:clockId",
+    "/clocks/:userId/:clockId",
     // verifyAdmin,
     async (request: Request, response: Response, next: NextFunction) => {
         try {
             // get id from url:
-            const id = +request.params.clockId;
+            const { userId, clockId } = request.params;
 
-            await clocksService.deleteClock(id);
+            await clocksService.deleteClock(+userId, +clockId);
 
             response.sendStatus(StatusCode.NoContent);
         } catch (err: any) {
