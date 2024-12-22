@@ -6,6 +6,7 @@ import catchAll from "./4-middleware/catch-all";
 import routeNotFound from "./4-middleware/route-not-found";
 import authController from "./6-controllers/auth-controller";
 import clocksController from "./6-controllers/clocks-controller";
+import germanyController from "./6-controllers/germany-controller";
 
 // create server:
 const server = express();
@@ -30,6 +31,7 @@ server.use(cors()); //enable cors for a specific frontend.
 // route requests to our controllers:
 server.use("/data", clocksController);
 server.use("/data", authController);
+// server.use("/data", germanyController);
 
 // Route Not Found:
 server.use(routeNotFound);

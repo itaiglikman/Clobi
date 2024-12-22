@@ -19,35 +19,35 @@ const usersPath = appConfig.dataFiles.users;
  * @returns token: string
  */
 async function register(user: UserModel): Promise<string> {
-  // get all users:
-  const users = await fs.readJson(usersPath);
+    // get all users:
+    const users = await fs.readJson(usersPath);
 
-  // validate if username is already taken:
-  if (await checkEmailIsTaken(users, user.email))
-    throw new ValidationError(`Email already exists`);
+    // validate if username is already taken:
+    if (await checkEmailIsTaken(users, user.email))
+        throw new ValidationError(`Email already exists`);
 
-  // validation:
-  user.validate();
+    // validation:
+    user.validate();
 
-  // Security - Hash password:
-  user.password = cyber.hashPassword(user.password);
+    // Security - Hash password:
+    user.password = cyber.hashPassword(user.password);
 
-  //Security - set role as "user" for denying someone from declaring itself as an admin:
-  user.roleId = RoleModel.user;
+    //Security - set role as "user" for denying someone from declaring itself as an admin:
+    user.roleId = RoleModel.user;
 
-  // create id:
-  user.id = await generateUniqueIdByType(IdType.userId);
+    // create id:
+    user.id = await generateUniqueIdByType(IdType.userId);
 
-  // write user to users.json:
-  users.push(user);
-  await fs.writeJson(usersPath, users, { spaces: 2 });
-  await fs.writeJson(clocksPath(user.id), [], { spaces: 2 });
+    // write user to users.json:
+    users.push(user);
+    await fs.writeJson(usersPath, users, { spaces: 2 });
+    await fs.writeJson(clocksPath(user.id), [], { spaces: 2 });
 
-  // get new token:
-  const token = cyber.getNewToken(user);
+    // get new token:
+    const token = cyber.getNewToken(user);
 
-  // return token:
-  return token;
+    // return token:
+    return token;
 }
 
 /**
@@ -58,33 +58,33 @@ async function register(user: UserModel): Promise<string> {
  * @returns token: string
  */
 async function login(credentials: CredentialsModel): Promise<string> {
-  
-  // validate:
-  credentials.validate();
-  
-  // Security - set credentials' password to the hashed password:
-  credentials.password = cyber.hashPassword(credentials.password);
-  
-  // get all users:
-  const users = await fs.readJson(usersPath);
-  
-  // search for user in users with the credentials:
-  const user = users.find((user: UserModel) => {
-    if (
-      user.email === credentials.email &&
-      user.password === credentials.password
-    )
-      return user;
-  });
 
-  // if no such user:
-  if (!user) throw new UnauthorizedError("Incorrect username or password.");
+    // validate:
+    credentials.validate();
 
-  // generate token:
-  const token = cyber.getNewToken(user);
+    // Security - set credentials' password to the hashed password:
+    credentials.password = cyber.hashPassword(credentials.password);
 
-  // return token:
-  return token;
+    // get all users:
+    const users = await fs.readJson(usersPath);
+
+    // search for user in users with the credentials:
+    const user = users.find((user: UserModel) => {
+        if (
+            user.email === credentials.email &&
+            user.password === credentials.password
+        )
+            return user;
+    });
+
+    // if no such user:
+    if (!user) throw new UnauthorizedError("Incorrect username or password.");
+
+    // generate token:
+    const token = cyber.getNewToken(user);
+
+    // return token:
+    return token;
 }
 
 /**
@@ -94,22 +94,29 @@ async function login(credentials: CredentialsModel): Promise<string> {
  * @returns boolean
  */
 async function checkEmailIsTaken(
-  users: UserModel[],
-  email: string
+    users: UserModel[],
+    email: string
 ): Promise<boolean> {
-  // search for users with the same email:
-  const result = users.filter((user: UserModel) => {
-    if (user.email === email) return user;
-  });
+    // search for users with the same email:
+    const result = users.filter((user: UserModel) => {
+        if (user.email === email) return user;
+    });
 
-  // if users found return true:
-  if (result[0]) return true;
+    // if users found return true:
+    if (result[0]) return true;
 
-  // if no users found return false:
-  return false;
+    // if no users found return false:
+    return false;
+}
+
+async function getAllUsers(): Promise<UserModel[]> {
+    const users = await fs.readJson(usersPath);
+    if (!users) return [];
+    return users;
 }
 
 export default {
-  register,
-  login,
+    register,
+    login,
+    getAllUsers,
 };

@@ -3,6 +3,7 @@ import ClockModel from "../3-models/clock-model";
 import fs from "fs-extra";
 import appConfig from "./app-config";
 import UserModel from "../3-models/user-model";
+import authService from "../5-services/auth-service";
 
 // define the paths to the data files:
 export const clocksPath = (userId: number) => appConfig.dataFiles.clocks(userId);
@@ -85,7 +86,7 @@ export function areClocksEqual(clock1: ClockModel, clock2: ClockModel): boolean 
  * @returns void
  */
 export async function validateUserId(userId: number): Promise<void> {
-    const users = await fs.readJson(usersPath);
+    const users = await authService.getAllUsers();
     const user = users.find((u: UserModel) => u.id === userId);
     if (!user) throw new ValidationError("User doesn't exist.");
 }

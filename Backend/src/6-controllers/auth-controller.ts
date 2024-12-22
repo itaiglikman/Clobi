@@ -40,5 +40,19 @@ router.post("/login", async (request: Request, response: Response, next: NextFun
     }
 });
 
+// GET all users: http://localhost:4000/data/users
+router.get("/users", async (request: Request, response: Response, next: NextFunction) => {
+    try {
+        // get all users from database: 
+        const users = await authService.getAllUsers();
+        
+        // response back the users:
+        response.json(users);
+    }
+    catch (err: any) {
+        next(err);
+    }
+});
+
 export default router;
 

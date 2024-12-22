@@ -39,10 +39,12 @@ router.post(
             // generate unique id for clock:
             request.body.id = await generateUniqueIdByType(IdType.clockId);
 
+            console.log("controller post request.body-->", request.body);
+            
             // get clock from request:
             const clock = new ClockModel(request.body);
             const newClock = await clocksService.addClock(clock);
-
+            
             response.status(StatusCode.Created).json(newClock);
         } catch (err: any) {
             next(err);
@@ -60,10 +62,12 @@ router.patch(
         try {
             // get id from url:
             const { userId, clockId } = request.params;
-
+            
             // get clockOut from request:
             const clockOut = request.body.clockOut;
 
+            console.log("controller patch clockOut-->", request);
+            
             const updatedClock = await clocksService.patchClockOut(+userId, +clockId, clockOut);
 
             response.json(updatedClock);

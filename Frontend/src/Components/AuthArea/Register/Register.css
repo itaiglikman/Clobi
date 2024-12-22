@@ -1,0 +1,42 @@
+.Register {
+    /* get full size of the page */
+    overflow: auto;
+    height: 100%;
+}
+
+.Register>form {
+    width: 350px;
+    height: auto;
+    border: 1px solid;
+    text-align: left;
+    margin: 20px auto;
+    padding: 10px 20px;
+    box-shadow: 10px 10px 10px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.Register>form>* {
+    width: 100%;
+}
+
+.Register .formHeader {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+/* default css for error to keep space free and not push all form when appears */
+.Register .errorText {
+    height: 1em;
+    margin-top: -8px;
+    font-size: 0.75em;
+    visibility: hidden;
+    color: red;
+}
+
+/* Make the error text visible when there is an error */
+.Register .errorText.visible {
+    visibility: visible; 
+}

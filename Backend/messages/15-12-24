@@ -7,7 +7,10 @@ backend:
     [X] - fix error message when clockOut is earlier clockIn
     [] - logs
     [] - german language option?
-    [] - clock file by userId????
+    [X] - clock file by userId????
             probably a much more efficient way to store the data and call data.
             most actions are done for a specific user.
             therefore it would be much more efficient to store the data in a file for each user. 
+    [API] - 
+      [X] - fix connection to time api
+      [] - clean up the code in germany controller

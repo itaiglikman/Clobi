@@ -11,5 +11,26 @@
     "userId": 2,
     "clockIn": "2024-12-03T11:00:00Z",
     "totalHours": 0
+  },
+  {
+    "id": 74,
+    "userId": 2,
+    "clockIn": "2024-12-21T11:24",
+    "clockOut": "2024-12-21T16:25",
+    "totalHours": 5.016666666666667
+  },
+  {
+    "id": 75,
+    "userId": 2,
+    "clockIn": "2024-12-27T11:35",
+    "clockOut": "2024-12-27T16:35",
+    "totalHours": 5
+  },
+  {
+    "id": 76,
+    "userId": 2,
+    "clockIn": "2024-12-28T11:50",
+    "clockOut": "2024-12-28T11:51",
+    "totalHours": 0.016666666666666666
   }
 ]
