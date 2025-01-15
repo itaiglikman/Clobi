@@ -14,10 +14,15 @@ class Interceptors {
         axios.interceptors.request.use(requestObjects => {
             // timezonedb will fail with the token so exclude this request:
             if(requestObjects.url?.includes("timezonedb.com")) return requestObjects;
-            if (authStore.getState().token)//Check if the request obj has a token.
+            //Check if the request obj has a token.
+            if (authStore.getState().token)
                 // If true: add it to the requestObject:
                 requestObjects.headers.Authorization = "Bearer " + authStore.getState().token;
-
+            
+            // Add Content-Type header for JSON payloads:
+            // if (["POST", "PUT", "PATCH"].includes(requestObjects.method?.toUpperCase()))
+            //     requestObjects.headers["Content-Type"] = "application/json";
+            
             return requestObjects;
         });
     }

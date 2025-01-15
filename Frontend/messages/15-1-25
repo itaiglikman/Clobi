@@ -1,0 +1,10 @@
+[X] - on logout - return to home page without clock button
+[] - fix clockout action - bad request
+[] - fix - on empty user's clocks - clock button is clicked.
+css:
+    [] - main area is overflowing
+[] - 
+[] - 
+[] - 
+[] - 
+[] - 

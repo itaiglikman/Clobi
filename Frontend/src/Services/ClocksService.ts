@@ -30,7 +30,7 @@ class ClocksService {
         const { id: clockId, userId, clockOut } = newClockOut;
         console.log("clock service patchClockOut clockOut->", clockOut);
         console.log("clock service patchClockOut url->", appConfig.clocksUrl + userId + "/" + clockId);
-        const response = await axios.patch<ClockModel>(appConfig.clocksUrl + userId + "/" + clockId, clockOut);
+        const response = await axios.patch<ClockModel>(appConfig.clocksUrl + userId + "/" + clockId, {clockOut});
         const updatedClock = response.data;
         console.log("clock service patchClockOut-->", updatedClock);
         return updatedClock;
